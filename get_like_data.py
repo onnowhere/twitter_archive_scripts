@@ -30,7 +30,7 @@ for i, tweet in enumerate(data):
 
     try:
         output = json.loads(subprocess.check_output(["snscrape", "--jsonl", "twitter-tweet", tweetId], creationflags = 0x08000000))
-        print(f"Stored: {tweetId} ({i+1}/{len(data)})")
+        print(f"Stored: {tweetId} ({i + 1}/{len(data)})")
         output_path = os.path.join(likes_path, f"{tweetId}.json")
         with open(output_path, "w", encoding="utf-8") as f:
             f.write(json.dumps(output, indent='\t', separators=(',', ': ')))
