@@ -3,6 +3,7 @@ import ujson
 import json
 import subprocess
 import time
+import traceback
 import snscrape.modules.twitter as sntwitter
 
 def create_path(filepath):
@@ -38,13 +39,14 @@ for i, tweet in enumerate(likes):
     try:
         print(f"Scraping tweet {tweetId}")
         tweetScraper = sntwitter.TwitterTweetScraper(tweetId)
-        tweet = next(tweetScraper.get_items())
-        output = tweet.json()
+        tweetData = next(tweetScraper.get_items())
+        output = tweetData.json()
 
         output_path = os.path.join(likes_path, f"{tweetId}.json")
         with open(output_path, "w", encoding="utf-8") as f:
             f.write(json.dumps(output, indent='\t', separators=(',', ': ')))
 
         print(f"Stored tweet {tweetId} ({i + 1}/{len(likes)})")
-    except Exception as e:
-        print(e)
+    except Exception:
+        print(f"Could not store tweet at https://twitter.com/i/web/status/{tweetId} (user may be private)")
+        # traceback.print_exc()
