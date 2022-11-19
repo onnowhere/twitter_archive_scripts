@@ -39,8 +39,8 @@ for i, tweet in enumerate(likes):
     try:
         print(f"Scraping tweet {tweetId}")
         tweetScraper = sntwitter.TwitterTweetScraper(tweetId)
-        tweetData = next(tweetScraper.get_items())
-        output = tweetData.json()
+        tweetData = next(tweetScraper.get_items()).json()
+        output = json.loads(tweetData)
 
         output_path = os.path.join(likes_path, f"{tweetId}.json")
         with open(output_path, "w", encoding="utf-8") as f:
