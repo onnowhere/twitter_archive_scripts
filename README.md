@@ -5,7 +5,7 @@ Quick scripts made to assist in archiving twitter data
 Twitter's user data archive does not contain metadata or media from liked tweets. These scripts help to gather data from liked tweets.
 
 - `get_like_data.py`
-    - Requires snscrape to be pip installed: https://github.com/JustAnotherArchivist/snscrape
+    - Requires `snscrape` (https://github.com/JustAnotherArchivist/snscrape) and `ujson` (https://github.com/ultrajson/ultrajson) to be `pip install`ed
     - Request and download an archive of your Twitter data: https://twitter.com/settings/download_your_data
     - Extract the `like.js` file into a folder with this script
     - Run the script to get a separate json metadata file for each liked tweet in the `likes` folder
